@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 5000",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "knex": "knex"
   },
   "dependencies": {
+    "knex": "^0.21.17",
+    "mysql": "^2.18.1",
     "next": "10.0.6",
     "react": "17.0.1",
     "react-dom": "17.0.1"
