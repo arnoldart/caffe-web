@@ -1,8 +1,11 @@
 import db from '../../../../libs/db'
+import authorization from '../../../../middleware/authorization'
 
 export default async function handler(req, res) {
   if(req.method !== 'PUT') return res.status(405).end()
   
+  const auth = await authorization(req, res)
+
   const { id } = req.query
   const { title, content } = req.body
 

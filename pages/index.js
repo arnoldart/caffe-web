@@ -12,11 +12,4 @@ function Home() {
 }
 
 
-// Home.getInitialProps = async (ctx) => {
-//   const res = await fetch('http://localhost:4030/api/v1/minuman')
-//   const resData = await res.json()
-  
-//   return {data: resData.data}
-// }
-
 export default Home

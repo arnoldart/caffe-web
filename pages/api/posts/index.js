@@ -1,7 +1,12 @@
 import db from '../../../libs/db'
+import authorization from '../../../middleware/authorization'
 
 export default async function handler(req, res) {
-  if(req.method !== 'GET') return res.status(405)
+  if(req.method !== 'GET') return res.status(405).end()
+
+  const auth = await authorization(req, res)
+
+  console.log(auth)
 
   const posts = await db('post')
 
