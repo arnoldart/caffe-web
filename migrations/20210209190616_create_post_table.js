@@ -4,7 +4,7 @@ exports.up = function(knex) {
     table.increments()
     table.string('title')
     table.text('content')
-    table.timestamp(true, true)
+    table.timestamp('created_at', { useTz: true });
   })
 };
 
