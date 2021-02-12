@@ -1,17 +1,9 @@
 import React, { useState } from 'react'
-import Link from 'next/link'
 import {tw} from 'twind'
-import {unauthPage} from '../../middleware/authorizationPage'
-
-export async function getServerSideProps(ctx) {
-  await unauthPage(ctx)
-
-  return{ props: {} }
-}
 
 export default function Register() {
   const [fields, setFields] = useState({
-    email: '',
+    user: '',
     password: ''
   })
 
@@ -22,7 +14,7 @@ export default function Register() {
 
     setStatus('Loading')
 
-    const registerReq = await fetch('/api/auth/register', {
+    const registerReq = await fetch('/api/auth/admincaffe/register', {
       method: 'POST',
       body: JSON.stringify(fields),
       headers: {
@@ -54,16 +46,13 @@ export default function Register() {
           <h1 className={tw `text-center font-bold text-3xl`}>Register</h1>
           <form onSubmit={registerHanlder.bind(this)}>
             <div className={tw `text-black flex flex-col`}>
-              <input name="email" onChange={fieldHandler.bind(this)} className={tw `w-56 mb-4 mt-6`} type="text" placeholder="Email"/>
+              <input name="user" onChange={fieldHandler.bind(this)} className={tw `w-56 mb-4 mt-6`} type="text" placeholder="Username"/>
               <input name="password" onChange={fieldHandler.bind(this)} className={tw `w-56 mt-4`} type="password" placeholder="Password"/>
             </div>
             <div className={tw `flex justify-center mt-6`}>
               <button type="submit" className={tw `bg-yellow-400 py-1 px-6 rounded-lg transition ease-in duration-150 text-white hover:text-black`} style={{outline: 'none'}}>Register</button>
             </div>
             <div className={tw `text-center mt-4`}>{status}</div>
-            <Link href="./login">
-              <a>Login</a>
-            </Link>
           </form>
        </div>
       </main>

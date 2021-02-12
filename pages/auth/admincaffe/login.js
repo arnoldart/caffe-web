@@ -1,36 +1,23 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { tw } from 'twind'
 import Cookie from 'js-cookie'
 import Router from 'next/router'
-import Cookies from 'next-cookies'
-import {unauthPage} from '../../middleware/authorizationPage'
 
-export async function getServerSideProps(ctx) {
-  await unauthPage(ctx)
-
-  return{ props: {} }
-}
 
 export default function Login() {
   const [field, setField] = useState({
-    email: '',
+    user: '',
     password: ''
   })
 
   const [status, setStatus] = useState('normal')
-
-  useEffect(() => {
-    const token = Cookie.get('token')
-    
-    if(token) return Router.push('/userPages')
-  },[])
 
   async function loginHandler(e) {
     e.preventDefault()
 
     setStatus('Loading')
 
-    const loginReq = await fetch('/api/auth/login', {
+    const loginReq = await fetch('/api/auth/admincaffe/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -46,7 +33,7 @@ export default function Login() {
 
     Cookie.set('token', loginRes.token)
 
-    Router.push('/userPages')
+    Router.push('/posts')
   }
 
   function fieldHandler(e) {
@@ -65,7 +52,7 @@ export default function Login() {
           <h1 className={tw `text-center font-bold text-3xl`}>Login</h1>
           <form onSubmit={loginHandler.bind(this)}>
             <div className={tw `text-black flex flex-col`}>
-              <input onChange={fieldHandler.bind(this)} name="email" className={tw `w-56 mb-4 mt-6`} type="text" placeholder="Email"/>
+              <input onChange={fieldHandler.bind(this)} name="user" className={tw `w-56 mb-4 mt-6`} type="text" placeholder="Username"/>
               <input onChange={fieldHandler.bind(this)} name="password" className={tw `w-56 mt-4`} type="password" placeholder="Password"/>
             </div>
             <div className={tw `flex justify-center mt-6`}>

@@ -1,20 +1,20 @@
-import db from '../../../libs/db'
+import db from '../../../../libs/db'
 import bcrypt from 'bcryptjs'
 
 export default async function handler(req, res) {
   if(req.method !== 'POST') return res.status(405).end()
 
-  const {email, password} = req.body
+  const {user, password} = req.body
 
   const salt = bcrypt.genSaltSync(10)
   const passHas = bcrypt.hashSync(password, salt)
 
-  const register = await db('user').insert({
-    email,
+  const register = await db('admin').insert({
+    user,
     password: passHas
   })
 
-  const registeredUser = await db('user')
+  const registeredUser = await db('admin')
                                   .where({ id:register })
                                   .first()
 

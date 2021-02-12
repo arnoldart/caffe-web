@@ -3,7 +3,7 @@ import {tw} from 'twind'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import Link from '../Components/ActiveLink'
 
-export default function Nav() {
+export default function NavIndex() {
   const [click, setClick] = useState(false)
 
   const handleClick = () => setClick(!click)
@@ -38,6 +38,16 @@ export default function Nav() {
                   <a onClick={closeMobileMenu} className={tw `ml-0 sm:ml-10  transition duration-150 ease-in hover:text-yellow-300`}>Contact</a>
                 </Link>
               </li>
+              <div className={tw `mt-8 sm:mt-0 ml-0 sm:ml-10 text-center`}>
+                <Link href="/auth/login">
+                  <button className={tw `bg-yellow-300 py-1 px-4 rounded-2xl`}>Login</button>
+                </Link>
+              </div>
+              <div className={tw `mt-8 sm:mt-0 ml-0 sm:ml-10 text-center`}>
+                <Link href="/auth/register">
+                  <button className={tw `bg-yellow-300 py-1 px-4 rounded-2xl`}>Sign up</button>
+                </Link>
+              </div>
             </ul>
           </div>
         </div>
