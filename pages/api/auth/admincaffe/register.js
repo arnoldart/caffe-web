@@ -4,14 +4,15 @@ import bcrypt from 'bcryptjs'
 export default async function handler(req, res) {
   if(req.method !== 'POST') return res.status(405).end()
 
-  const {user, password} = req.body
+  const {user, password, type} = req.body
 
   const salt = bcrypt.genSaltSync(10)
   const passHas = bcrypt.hashSync(password, salt)
 
   const register = await db('admin').insert({
     user,
-    password: passHas
+    password: passHas,
+    type: 'SUPERUSER'
   })
 
   const registeredUser = await db('admin')

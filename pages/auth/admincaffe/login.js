@@ -8,7 +8,7 @@ export default function Login() {
   const [field, setField] = useState({
     user: '',
     password: ''
-  })
+  }) 
 
   const [status, setStatus] = useState('normal')
 

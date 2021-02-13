@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'
 export default async function handler(req, res) {
   if(req.method !== 'POST') return res.status(405).end()
 
-  const { email, password } = req.body
+  const { email, username, password } = req.body
 
   const checkUser = await db('user')
                             .where({ email })
@@ -20,7 +20,7 @@ export default async function handler(req, res) {
 
   const token = jwt.sign({
     id: checkUser.id,
-    email: checkUser.email
+    username: checkUser.username,
   }, 'yujincantikmpshhh', {
     expiresIn: '7d'
   })

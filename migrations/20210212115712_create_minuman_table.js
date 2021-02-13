@@ -4,6 +4,7 @@ exports.up = function(knex) {
     table.increments()
     table.enu('type', ['Milkshake', 'Coffe', 'Juice', 'Tea'])
     table.string('name')
+    table.string('img')
     table.integer('harga')
     table.text('desc')
     table.timestamp('created_at', { useTz: true });

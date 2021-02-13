@@ -3,6 +3,8 @@ import styles from '../../styles/Home.module.css'
 import {tw} from 'twind'
 import Nav from '../../Components/Nav'
 import { authPage } from '../../middleware/authorizationPage'
+import jwtDecode from 'jwt-decode'
+import Cookies from 'js-cookie'
 
 export async function getServerSideProps(ctx) {
   const { token } = await authPage(ctx)
@@ -19,22 +21,37 @@ export async function getServerSideProps(ctx) {
     }
   })
 
+
   const makanan = await makananReq.json()
   const minuman = await minumanReq.json()
 
   return { 
     props: {
       minuman: minuman.data, 
-      makanan: makanan.data
+      makanan: makanan.data,
+      token
     } 
   }
 }
 
 function Home(props) {
-  console.log(props)
+  
+  const decode = jwtDecode(props.token)
+  const username = decode.username
+
+  
   return (
     <>
-      <Nav />
+      <Nav username={username} />
+
+      <main className={tw `text-white`}>
+        { props.makanan.map(makanan => (
+            <div key={makanan.id}>
+              <div>Jenis makanan : {makanan.type}</div>
+              <div>Nama Makanan : {makanan.name}</div>
+            </div>
+        ))}
+      </main>
     </>
   )
 }
