@@ -6,9 +6,13 @@ export default function useForm(validate) {
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('normal')
   const [fields, setFields] = useState({
-    email: '' || undefined,
-    username: '' || undefined,
-    password: '' || undefined
+    email: '',
+    username: '',
+    password: ''
+  })
+
+  const [ search, setSearch ] = useState({
+    name: ''
   })
 
   async function registerHanlder(e) {
@@ -18,27 +22,27 @@ export default function useForm(validate) {
 
     setStatus('Loading')
 
-    if(fields.username == undefined) return setStatus('error')
+    if(fields.username === '') return setStatus('error')
 
-    let format = !/\S+@\S+\.\S+/.test(fields.email)
-    if(format) console.log('fijsoifjsfoj')
-    console.log('njir')
+    if(fields.email === '' || !/\S+@\S+\.\S+/.test(fields.email)) return setStatus('error')
 
-    // const registerReq = await fetch('/api/auth/register', {
-    //   method: 'POST',
-    //   body: JSON.stringify(fields),
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
+    if(fields.password === '') return setStatus('error')
+
+    const registerReq = await fetch('/api/auth/register', {
+      method: 'POST',
+      body: JSON.stringify(fields),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
     
-    // if(!registerReq.ok) return setStatus('error')
+    if(!registerReq.ok) return setStatus('error')
 
-    // const regsiterRes = await registerReq.json()
+    const regsiterRes = await registerReq.json()
 
     setStatus('Success')
 
-    // Router.push('/auth/login')
+    Router.push('/auth/login')
   }
 
   
@@ -76,5 +80,7 @@ export default function useForm(validate) {
     })
   }
 
-  return {registerHanlder, fieldHandler, loginHandler, fields, status, errors}
+ 
+
+  return {registerHanlder, fieldHandler, loginHandler, searchHandler, fields, status, errors}
 }

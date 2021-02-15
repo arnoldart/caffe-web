@@ -20,6 +20,7 @@
     "next-images": "^1.7.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-dropdown": "^1.9.2",
     "react-icons": "^4.2.0",
     "twind": "^0.14.6"
   }

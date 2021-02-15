@@ -7,13 +7,14 @@ export default async function handler(req, res) {
   const auth = await authorization(req, res)
 
   const { id } = req.query
-  const { type, name, harga, desc } = req.body
+  const { type, name, img, harga, desc } = req.body
 
   const update = await db('makanan')
                           .where({ id })
                           .update({
                             type, 
                             name, 
+                            img,
                             harga, 
                             desc
                           })

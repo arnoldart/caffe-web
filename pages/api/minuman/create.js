@@ -6,11 +6,12 @@ export default async function handler(req, res) {
   
   const auth = await authorization(req, res)
 
-  const { type, name, harga, desc} = req.body
+  const { type, name, img, harga, desc} = req.body
 
   const create = await db('minuman').insert({
     type, 
     name, 
+    img,
     harga, 
     desc
   })
