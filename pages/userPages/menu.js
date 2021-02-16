@@ -55,8 +55,8 @@ function Home(props) {
           <div className={tw `ml-48`}>
             <p className={tw `border-b-1 border-gray-500`}>Menu</p>
             <div className={tw `flex flex-wrap pl-8`}>
-            {props.makanan.map(makanan => (
-                <div key={makanan.id} className={tw `border-1 border-gray-500 mr-9 mt-9 p-4 rounded-lg`} style={{width: '21%'}}>
+            {props.makanan.map((makanan, key) => (
+                <div key={key} className={tw `border-1 border-gray-500 mr-9 mt-9 p-4 rounded-lg`} style={{width: '21%'}}>
                   <div>
                     <img src={makanan.img} alt="makanan"/>
                   </div>

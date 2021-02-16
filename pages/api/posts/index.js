@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 
   console.log(auth)
 
-  const posts = await db('post')
+  const posts = await db('posts')
 
   res.status(200)
   res.json({

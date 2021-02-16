@@ -82,5 +82,5 @@ export default function useForm(validate) {
 
  
 
-  return {registerHanlder, fieldHandler, loginHandler, searchHandler, fields, status, errors}
+  return {registerHanlder, fieldHandler, loginHandler, fields, status, errors}
 }
