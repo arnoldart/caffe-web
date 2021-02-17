@@ -4,7 +4,7 @@ import authorization from '../../../middleware/authorization'
 export default async function handler(req, res) {
   if(req.method !== 'POST') return res.status(405).end()
   
-  const auth = await authorization(req, res)
+  // const auth = await authorization(req, res)
 
   const { product, makanan, minuman, name, img, harga, desc } = req.body
 
@@ -19,6 +19,7 @@ export default async function handler(req, res) {
       desc
 
     })
+
 
     const createdData = await db('posts').where('id', create).first()
 

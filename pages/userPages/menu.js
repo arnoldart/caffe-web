@@ -4,44 +4,41 @@ import {tw} from 'twind'
 import Nav from '../../Components/Nav'
 import { authPage } from '../../middleware/authorizationPage'
 import jwtDecode from 'jwt-decode'
-import Cookies from 'js-cookie'
+import Cookies, { set } from 'js-cookie'
 import jumbotron from '../../public/images/jumbotron.png'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import Link from 'next/link'
 
 export async function getServerSideProps(ctx) {
   const { token } = await authPage(ctx)
 
-  const makananReq = await fetch('http://localhost:5000/api/makanan', {
+  const productsReq = await fetch('http://localhost:5000/api/posts', {
     headers: {
       'Authorization': 'Bearer ' + token
     }
   })
 
-  const minumanReq = await fetch('http://localhost:5000/api/minuman', {
-    headers: {
-      'Authorization': 'Bearer ' + token
-    }
-  })
-
-
-  const makanan = await makananReq.json()
-  const minuman = await minumanReq.json()
+  const products = await productsReq.json()
 
   return { 
     props: {
-      minuman: minuman.data, 
-      makanan: makanan.data,
+      products: products.data,
       token
     } 
   }
 }
 
 function Home(props) {
+  const [ cart, setCart ] = useState([])
   
   const decode = jwtDecode(props.token)
   const username = decode.username
 
   const formatNumber = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+
+  useEffect(() => {
+    document.body.style.overflowY = "hidden"
+  })
 
   return (
     <>
@@ -55,25 +52,19 @@ function Home(props) {
           <div className={tw `ml-48`}>
             <p className={tw `border-b-1 border-gray-500`}>Menu</p>
             <div className={tw `flex flex-wrap pl-8`}>
-            {props.makanan.map((makanan, key) => (
-                <div key={key} className={tw `border-1 border-gray-500 mr-9 mt-9 p-4 rounded-lg`} style={{width: '21%'}}>
+            {props.products.map(produk => (
+                <div key={produk.id} className={tw `border-1 border-gray-500 mr-9 mt-9 p-4 rounded-lg`} style={{width: '21%'}}>
+                  <a href={`/userPages/detail/${produk.id}`}>
+                    <div>
+                      <img src={produk.img} alt="makanan"/>
+                    </div>
+                    <div>
+                      <p className={tw `mt-4`}>{produk.name}</p>
+                      <p className={tw `mt-2 font-bold`}>Rp {formatNumber(produk.harga)}</p>
+                    </div>
+                  </a>
                   <div>
-                    <img src={makanan.img} alt="makanan"/>
-                  </div>
-                  <div>
-                    <p className={tw `mt-4`}>{makanan.name}</p>
-                    <p className={tw `mt-2 font-bold`}>Rp {formatNumber(makanan.harga)}</p>
-                  </div>
-                </div>
-              ))}
-              {props.minuman.map(minuman => (
-                <div key={minuman.id} className={tw `border-1 border-gray-500 mr-9 mt-9 p-4 rounded-lg`} style={{width: '21%'}}>
-                  <div>
-                    <img src={minuman.img} alt="minuman"/>
-                  </div>
-                  <div>
-                    <p className={tw `mt-4`}>{minuman.name}</p>
-                    <p className={tw `mt-2 font-bold`}>Rp {formatNumber(minuman.harga)}</p>
+                    <button>Add to card</button>
                   </div>
                 </div>
               ))}

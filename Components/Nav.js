@@ -6,7 +6,7 @@ import { authPage } from '../middleware/authorizationPage'
 import cookies from 'js-cookie'
 import useForm from '../Components/useForm'
 import Router from 'next/router'
-
+import cart from '../public/images/cart.svg'
 
 
 export default function Nav({username}) {
@@ -84,6 +84,9 @@ export default function Nav({username}) {
                     </Link>
                   </div>
                 </div>
+              </li>
+              <li className={tw `mt-8 sm:mt-0 ml-0 sm:ml-10`}>
+                <a href="#"><img src={cart} alt="img"/></a>
               </li>
             </ul>
           </div>
