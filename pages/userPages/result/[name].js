@@ -36,23 +36,47 @@ export default function handler(props) {
     <>
       <Nav username={username} />
 
-      <main className={tw `m-20`}>
+      <main className={tw `m-2 p-10`}>
         <div className={tw `text-white flex`}>
-          <aside className={tw ``}>
+          <aside>
             <p>Filter</p>
+            <div className={tw `mt-4 ml-4`}>
+              <p>Makanan</p>
+              <ul className={tw `ml-4`}>
+                <li><input className={tw `mr-2`} type="checkbox"/>Makanan</li>
+                <ul>
+                  <li className={tw `flex items-center`}><input className={tw `mr-2`} type="checkbox"/>Hamburger</li>
+                  <li className={tw `flex items-center`}><input className={tw `mr-2`} type="checkbox"/>Pasta</li>
+                  <li className={tw `flex items-center`}><input className={tw `mr-2`} type="checkbox"/>Dessert</li>
+                  <li className={tw `flex items-center`}><input className={tw `mr-2`} type="checkbox"/>Bakery</li>
+                </ul>
+              </ul>
+            </div>
+            <div className={tw `mt-4 ml-4`}>
+              <p>Minuman</p>
+              <ul className={tw `ml-4`}>
+                <li><input className={tw `mr-2`} type="checkbox"/>Minuman</li>
+                <ul>
+                  <li className={tw `flex items-center`}><input className={tw `mr-2`} type="checkbox"/>Milkshake</li>
+                  <li className={tw `flex items-center`}><input className={tw `mr-2`} type="checkbox"/>Coffe</li>
+                  <li className={tw `flex items-center`}><input className={tw `mr-2`} type="checkbox"/>Juice</li>
+                  <li className={tw `flex items-center`}><input className={tw `mr-2`} type="checkbox"/>Tea</li>
+                </ul>
+              </ul>
+            </div>
           </aside>
-          <div className={tw `ml-48`}>
-            <p className={tw `border-b-1 border-gray-500`}>Menu</p>
-            <div className={tw `flex flex-wrap pl-8`}>
-              {props.result.map(({id, name, img, harga}) => (
-                <div key={id} className={tw `border-1 border-gray-500 mr-9 mt-9 p-4 rounded-lg`} style={{width: '21%'}}>
-                  <a href={`/userPages/detail/${id}`}>
+          <div className={tw `ml-20`}>
+            <p className={tw `border-b-1 border-gray-500`} style={{width: '94.5%'}}>Menu</p>
+            <div className={tw `flex flex-wrap`}>
+            {props.result.map(produk => (
+                <div key={produk.id} className={tw `border-1 border-gray-500 mr-9 mt-9 p-4 rounded-lg`} style={{width: '21%'}}>
+                  <a href={`/userPages/detail/${produk.id}`}>
                     <div>
-                      <img src={img} alt="makanan"/>
+                      <img className={tw `rounded-lg`} src={produk.img} alt="makanan"/>
                     </div>
                     <div>
-                      <p className={tw `mt-4`}>{name}</p>
-                      <p className={tw `mt-2 font-bold`}>Rp {formatNumber(harga)}</p>
+                      <p className={tw `mt-4`}>{produk.name}</p>
+                      <p className={tw `mt-2 font-bold`}>Rp {formatNumber(produk.harga)}</p>
                     </div>
                   </a>
                   <div>
