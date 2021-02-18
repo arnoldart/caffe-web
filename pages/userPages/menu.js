@@ -12,11 +12,7 @@ import Link from 'next/link'
 export async function getServerSideProps(ctx) {
   const { token } = await authPage(ctx)
 
-  const productsReq = await fetch('http://localhost:5000/api/posts', {
-    headers: {
-      'Authorization': 'Bearer ' + token
-    }
-  })
+  const productsReq = await fetch('http://localhost:5000/api/posts')
 
   const products = await productsReq.json()
 
@@ -37,7 +33,7 @@ function Home(props) {
   const formatNumber = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 
   useEffect(() => {
-    document.body.style.overflowY = "hidden"
+    document.body.style.overflowY = "scroll"
   })
 
   return (

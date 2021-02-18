@@ -84,7 +84,7 @@ export default function Nav({username}) {
                     </Link>
                   </div>
                 </div>
-              </li>
+              </li>s
               <li className={tw `mt-8 sm:mt-0 ml-0 sm:ml-10`}>
                 <a href="#"><img src={cart} alt="img"/></a>
               </li>
