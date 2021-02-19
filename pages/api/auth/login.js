@@ -1,7 +1,7 @@
 import db from '../../../libs/db'
 import bcrypt from 'bcryptjs'
 import { FaEraser } from 'react-icons/fa'
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken':q
 
 export default async function handler(req, res) {
   if(req.method !== 'POST') return res.status(405).end()

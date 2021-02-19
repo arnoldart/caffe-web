@@ -25,8 +25,6 @@ export async function getServerSideProps(ctx) {
 }
 
 function Home(props) {
-  const [ cart, setCart ] = useState([])
-  
   const decode = jwtDecode(props.token)
   const username = decode.username
 
