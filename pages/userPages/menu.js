@@ -8,6 +8,8 @@ import Cookies, { set } from 'js-cookie'
 import jumbotron from '../../public/images/jumbotron.png'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Cart from './Cart'
+import useCart from '../../Components/useCart'
 
 export async function getServerSideProps(ctx) {
   const { token } = await authPage(ctx)
@@ -25,10 +27,17 @@ export async function getServerSideProps(ctx) {
 }
 
 function Home(props) {
+  const [cartItems, setCartItems ] = useState([])
   const decode = jwtDecode(props.token)
   const username = decode.username
 
   const formatNumber = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+
+  const onAdd = (produk) => {
+    setCartItems(produk)
+  }
+
+  console.log(cartItems)
 
   useEffect(() => {
     document.body.style.overflowY = "scroll"
@@ -81,8 +90,8 @@ function Home(props) {
                       <p className={tw `mt-2 font-bold`}>Rp {formatNumber(produk.harga)}</p>
                     </div>
                   </a>
-                  <div>
-                    <button>Add to card</button>
+                  <div className={tw `mt-4`}>
+                    <button onClick={() => onAdd(produk)} className={tw `border-1 border-yellow-300 py-1 px-2 rounded bg-transparent hover:bg-yellow-300 transition duration-150 ease-in`} style={{outline: 'none'}}>Add to card</button>
                   </div>
                 </div>
               ))}

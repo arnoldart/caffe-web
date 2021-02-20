@@ -1,0 +1,78 @@
+{
+  "message": "Post Data",
+  "data": [
+    {
+        "product": "makanan",
+        "makanan": "Burger",
+        "minuman": "",
+        "name": "Hamburger Egg",
+        "img": "https://res.cloudinary.com/dvlldxw1h/image/upload/v1612937418/hamburger_ehgav2.png",
+        "harga": 15000,
+        "desc": "ya gitu dah"
+    }, 
+    {
+        "product": "makanan",
+        "makanan": "Pasta",
+        "minuman": "",
+        "name": "Mie Dok Dok",
+        "img": "https://res.cloudinary.com/dvlldxw1h/image/upload/v1612937423/pasta_jjvbpv.png",
+        "harga": 10000,
+        "desc": "ya gitu dah"
+    }, 
+    {
+        "product": "makanan",
+        "makanan": "Dessert",
+        "minuman": "",
+        "name": "Ice Cream Campur",
+        "img": "https://res.cloudinary.com/dvlldxw1h/image/upload/v1612937419/iceCream_vpp12j.png",
+        "harga": 10000,
+        "desc": "ya gitu dah"
+    }, 
+    {
+        "product": "makanan",
+        "makanan": "Bakery",
+        "minuman": "",
+        "name": "Bakery",
+        "img": "https://res.cloudinary.com/dvlldxw1h/image/upload/v1612937423/bakery_q8gktq.png",
+        "harga": 10000,
+        "desc": "ya gitu dah"
+    }, 
+    
+    {
+        "product": "minuman",
+        "makanan": "",
+        "minuman": "Milkshake",
+        "name": "Milkshake Chocolate",
+        "img": "https://res.cloudinary.com/dvlldxw1h/image/upload/v1612937421/mikshake_htqyiw.png",
+        "harga": 10000,
+        "desc": "ya gitu dah"
+    }, 
+    {
+        "product": "minuman",
+        "makanan": "",
+        "minuman": "Juice",
+        "name": "Coffe Latte",
+        "img": "https://res.cloudinary.com/dvlldxw1h/image/upload/v1612937419/coffeLatte_v4qpbj.png",
+        "harga": 10000,
+        "desc": "ya gitu dah"
+    }, 
+    {
+        "product": "minuman",
+        "makanan": "",
+        "minuman": "Juice",
+        "name": "Avocado Juice",
+        "img": "https://res.cloudinary.com/dvlldxw1h/image/upload/v1612937416/avocadoJuice_dl62if.png",
+        "harga": 10000,
+        "desc": "ya gitu dah"
+    }, 
+    {
+        "product": "minuman",
+        "makanan": "",
+        "minuman": "Tea",
+        "name": "Lemon Tea",
+        "img": "https://res.cloudinary.com/dvlldxw1h/image/upload/v1612937417/lemonTea_mz7ga1.png",
+        "harga": 10000,
+        "desc": "ya gitu dah"
+    }
+  ]
+}
